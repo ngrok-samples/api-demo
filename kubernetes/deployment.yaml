@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngrok-api-service
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ngrok-api-service
+  template:
+    metadata:
+      labels:
+        app: ngrok-api-service
+    spec:
+      containers:
+      - name: ngrok-api-service
+        image: joelatngrok/ngrok-api-service:latest
+        ports:
+        - containerPort: 4000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngrok-api-service
+  namespace: prod
+spec:
+  selector:
+    app: ngrok-api-service
+  ports:
+  - port: 80
+    targetPort: 4000
