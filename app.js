@@ -3,7 +3,7 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.all('/*', function (req, res) {
   res.status(200).json({ 
