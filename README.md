@@ -31,6 +31,9 @@ Change the listening port:
 PORT=4001 node app.js
 ```
 
+You can change the port to run multiple instances of the service on a single
+system.
+
 Change the message:
 
 ```shell
@@ -42,3 +45,30 @@ multicloud load balancing with endpoint pools. Set one replica with
 `MESSAGE='Hello from cloud A!'` and another with `MESSAGE='Hello
 from cloud B!'` to see ngrok load-balance between the two services.
 
+## Use with Docker
+
+This project also has a [Docker
+container](https://hub.docker.com/repository/docker/joelatngrok/api-demo/general)
+availble via DockerHub.
+
+```shell
+# Default usage
+docker run -p 4000:4000 -e -d joelatngrok/api-demo
+
+# Change the port
+docker run -p 4000:4000 -e PORT=4001 -d joelatngrok/api-demo
+
+# Change the message
+docker run -p 4000:4000 -e MESSAGE='Custom message goes here!' -d joelatngrok/api-demo
+```
+
+## Build the container yourself
+
+To build and push this app to a different registry:
+
+```shell
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t <YOUR_REGISTRY_USERNAME>/api-demo:latest \
+  --push .
+```
