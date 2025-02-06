@@ -1,12 +1,44 @@
 # ngrok API service
 
-This project contains a very simple API service that returns information about the
-connection on all paths. Its intended usage is to demo ngrok's API gateway
-functionality.
+This project contains a very simple NodeJS-based API service that returns
+information about the connection on all paths. The intended usage is to demo
+ngrok's API gateway functionality.
 
-Example response:
+A (prettified) example response:
 
+```json
+{
+  "message": "Pong from ngrok!",
+  "host": "localhost:4000",
+  "req_headers": {
+    "host": "localhost:4000",
+    "user-agent": "curl/8.7.1",
+    "accept": "*/*"
+  },
+  "method": "GET",
+  "url": "/",
+  "time": "2025-02-06T21:23:28.084Z",
+  "status": 200
+}
 ```
-{"message":"Pong from ngrok!","host":"api-g-tester.joelhans.xyz","client_ip":"174.73.243.140","method":"GET","url":"/","time":"2024-10-16T13:17:07.546Z","status":200}
+
+You can configure the app using environment variables to change its listening
+port from the default `4000` or to alter the default messsage.
+
+Change the listening port:
+
+```shell
+PORT=4001 node app.js
 ```
+
+Change the message:
+
+```shell
+MESSAGE='Hello from cloud A!' node app.js
+```
+
+Changing the message is useful in certain demo situations, like showcasing
+multicloud load balancing with endpoint pools. Set one replica with
+`MESSAGE='Hello from cloud A!'` and another with `MESSAGE='Hello
+from cloud B!'` to see ngrok load-balance between the two services.
 
