@@ -27,5 +27,5 @@ spec:
   selector:
     app: api-demo
   ports:
-  - port: 80
+  - port: 4000
     targetPort: 4000
