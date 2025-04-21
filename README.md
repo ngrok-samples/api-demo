@@ -52,14 +52,17 @@ container](https://hub.docker.com/repository/docker/joelatngrok/api-demo/general
 availble via DockerHub.
 
 ```shell
-# Default usage
-docker run -p 4000:4000 -e -d joelatngrok/api-demo
+# Default usage - ctrl-c to stop container
+docker run --init --platform=linux/amd64 --rm --name="api" -p 4000:4000 joelatngrok/api-demo
 
-# Change the port
-docker run -p 4000:4000 -e PORT=4001 -d joelatngrok/api-demo
+# Run detached - `docker stop api` to stop container
+docker run --init --platform=linux/amd64 --rm --name="api" -p 4000:4000 -d joelatngrok/api-demo
+
+# Change the container's internal port
+docker run --init --platform=linux/amd64 --rm --name="api" -p 4000:4001 -e PORT=4001 joelatngrok/api-demo
 
 # Change the message
-docker run -p 4000:4000 -e MESSAGE='Custom message goes here!' -d joelatngrok/api-demo
+docker run --init --platform=linux/amd64 --rm --name="api" -p 4000:4000 -e MESSAGE='Custom message goes here!' -d joelatngrok/api-demo
 ```
 
 ## Build the container yourself
