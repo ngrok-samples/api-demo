@@ -6,8 +6,12 @@ app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 4000;
 const message = process.env.MESSAGE || 'Pong from ngrok!';
 
+app.get('/error', function (req, res) {
+  res.sendStatus(500);
+});
+
 app.all('/*', function (req, res) {
-  res.status(200).json({ 
+  res.status(200).json({
     message: message,
     host: req.headers.host,
     req_headers: req.headers,
