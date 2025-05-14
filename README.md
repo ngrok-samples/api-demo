@@ -9,12 +9,7 @@ A (prettified) example response:
 ```json
 {
   "message": "Pong from ngrok!",
-  "host": "localhost:4000",
-  "req_headers": {
-    "host": "localhost:4000",
-    "user-agent": "curl/8.7.1",
-    "accept": "*/*"
-  },
+  "user_agent":"curl/8.7.1"
   "method": "GET",
   "url": "/",
   "time": "2025-02-06T21:23:28.084Z",
